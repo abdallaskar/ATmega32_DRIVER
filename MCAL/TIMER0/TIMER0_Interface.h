@@ -1,19 +1,16 @@
+
 /*
- * TIMER0_Interface.h
- *
- *  Created on: Dec 18, 2021
- *      Author: Abdalla
+ * Title      : TIMER0
+ * File Name  : TIMER0_Interface.h
+ * Author     : abdalla
+ * Created on : Mar 27, 2022
  */
 
 #ifndef TIMER0_INTERFACE_H_
 #define TIMER0_INTERFACE_H_
 
-#include "../LIB/BIT_MATH.h"
-#include "../LIB/STD_TYPE.h"
-#include "TIMER0_Private.h"
 
 
-// enum for modes
 
 typedef enum {
 
@@ -48,29 +45,27 @@ typedef enum {
 
 
 void  TIMER0_Init(TIMER0_Mode_Type mode,TIMER0_Scaler_Type scaler,OC0_Mode_Type  oc0_mode);
+
 void  TIMER0_Overflow_Interrupt_Eable();
 void  TIMER0_Overflow_Interrupt_Disable();
 void  TIMER0_Output_Compare_Interrupt_Eable();
 void  TIMER0_Output_Compare_Interrupt_Disable();
 
-/*  TCCRO  */
+void TIMER0_OCMP_SetCallBack(void(*Copy_pvOCMPFunc)(void)) ;
+void TIMER0_OVF_SetCallBack(void(*Copy_pvOVFFunc)(void)) ;
 
-#define   FOC0     7
-#define   WGM00    6
-#define   COM01    5
-#define	  COM00    4
-#define	  WGM01    3
-#define   CS02     2
-#define	  CS01     1
-#define	  CS00     0
 
-/*  TIMSK  */
 
-#define   OCIE0    1
-#define   TOIE0    0
 
-//void TIMER0_Delay();
-//void TIMER0_NormalMode();
-//void TIMER0_CTCMode();
+/****************	Interrupt Vectors Table For Timer 0 	*******************/
+
+#define TIMER0_COMP_vect       __vector_10
+#define TIMER0_OVF_vect        __vector_11
+
+/****************   Interrupt Function  ISR  **********************************/
+#define ISR(vector,...)  \
+void vector (void) __attribute__ ((signal)) __VA_ARGS__ ; \
+void vector (void)
+
 
 #endif /* TIMER0_INTERFACE_H_ */

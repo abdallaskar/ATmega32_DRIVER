@@ -15,18 +15,20 @@
 
 /******* External Interrupt Register and bits  *************/
 
+// register enable and disable
 #define GICR     *((volatile  u8*)(0x5B))
 
 #define INT1  7
 #define INT0  6
 #define INT2  5
 
-
+// register flag
 #define GIFR     *((volatile  u8*)(0x5A))
 
 #define  INTF1  7
 #define  INTF0  6
 #define  INTF2  5
+
 
 #define MCUCR    *((volatile  u8*)(0x55))
 

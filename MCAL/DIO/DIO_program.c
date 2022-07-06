@@ -5,9 +5,11 @@
  *      Author: Abdalla
  */
 
-#include "../DIO/DIO_private.h"
-#include "../LIB/STD_TYPE.h"
+#include "../LIB/STD_TYPES.h"
 #include "../LIB/BIT_MATH.h"
+
+
+#include "../DIO/DIO_private.h"
 
 
 void DIO_SetPinDirection(u8 port, u8 pin, u8 direction) {
@@ -29,16 +31,16 @@ void DIO_SetPinDirection(u8 port, u8 pin, u8 direction) {
 	} else {
 		switch (port) {
 		case 0:
-			CLR_BIT(DDRA, pin);
+			CLEAR_BIT(DDRA, pin);
 			break;
 		case 1:
-			CLR_BIT(DDRB, pin);
+			CLEAR_BIT(DDRB, pin);
 			break;
 		case 2:
-			CLR_BIT(DDRC, pin);
+			CLEAR_BIT(DDRC, pin);
 			break;
 		case 3:
-			CLR_BIT(DDRD, pin);
+			CLEAR_BIT(DDRD, pin);
 			break;
 		}
 	}
@@ -81,16 +83,16 @@ void DIO_SetPinValue(u8 port, u8 pin, u8 value) {
 	} else {
 		switch (port) {
 		case 0:
-			CLR_BIT(PORTA, pin);
+			CLEAR_BIT(PORTA, pin);
 			break;
 		case 1:
-			CLR_BIT(PORTB, pin);
+			CLEAR_BIT(PORTB, pin);
 			break;
 		case 2:
-			CLR_BIT(PORTC, pin);
+			CLEAR_BIT(PORTC, pin);
 			break;
 		case 3:
-			CLR_BIT(PORTD, pin);
+			CLEAR_BIT(PORTD, pin);
 			break;
 		}
 	}
@@ -134,16 +136,16 @@ u8 DIO_GetPinValue(u8 port, u8 pin) {
 	u8 return_value1 = 0;
 	switch (port) {
 	case 0:
-		return_value1 = GIT_BIT(PINA, pin);
+		return_value1 = GET_BIT(PINA, pin);
 		break;
 	case 1:
-		return_value1 = GIT_BIT(PINB, pin);
+		return_value1 = GET_BIT(PINB, pin);
 		break;
 	case 2:
-		return_value1 = GIT_BIT(PINC, pin);
+		return_value1 = GET_BIT(PINC, pin);
 		break;
 	case 3:
-		return_value1 = GIT_BIT(PIND, pin);
+		return_value1 = GET_BIT(PIND, pin);
 		break;
 	}
 	return return_value1;

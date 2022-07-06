@@ -5,16 +5,16 @@
  *      Author: abdalla
  */
 #include "../LIB/BIT_MATH.h"
-#include "../LIB/STD_TYPE.h"
+#include "../LIB/STD_TYPES.h"
 
 #include "GIE_private.h"
 
 
-void GIE_EnableGlobleInterrupt(void){
+void GIE_voidEnableGlobleInterrupt(void){
 	SET_BIT(SREG,7);
 
 
 }
-void GIE_DisableGlobleInterrupt(void){
-	CLR_BIT(SREG,7);
+void GIE_voidDisableGlobleInterrupt(void){
+	CLEAR_BIT(SREG,7);
 }

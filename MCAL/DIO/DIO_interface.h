@@ -8,7 +8,6 @@
 #ifndef DIO_DIO_INTERFACE_H_
 #define DIO_DIO_INTERFACE_H_
 
-#include "../LIB/STD_TYPE.h"
 
 /* Define number of port */
 

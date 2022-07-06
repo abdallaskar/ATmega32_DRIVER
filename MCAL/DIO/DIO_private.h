@@ -8,7 +8,6 @@
 #ifndef DIO_DIO_PRIVATE_H_
 #define DIO_DIO_PRIVATE_H_
 
-#include "../LIB/STD_TYPE.h"
 
 /* RIGISTER  A*/
 #define PORTA   *((volatile u8*)0x3B)

@@ -67,7 +67,7 @@ void vector (void)
 #define ISR_NOBLOCK   __attribute__ ((interrupt))
 #define ISR_NAKED     __attribute__ ((naked))
 
-/******************/
+/*********** Assembly instructions *******/
 
 /******** set global interrupt *******/
 #define sei()     __asm__ __volatile__ ("sei" ::)

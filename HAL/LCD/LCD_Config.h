@@ -7,21 +7,31 @@
 
 #ifndef LCD_LCD_CONFIG_H_
 #define LCD_LCD_CONFIG_H_
-/* LCD PORT C PIN FROM 4 : 7
- * LCD PORT COMMEND PORT D
- *   RS : PIN 0
- *   EN : PIN 1
- *   RW : GROUND
+
+#include "LCD_Private.h"
+
+/*  PORT DATA      PORT A
+ *  PORT CONTROL   PORT B
+ *
+ *   EN : PIN 0
+ *   RW : PIN 1
+ *   RS : PIN 2
  *
  *   MODE CAN BE 4 OR 8
  */
 
+#define  DDR_DATA       DDRA
+#define  PORT_DATA      PORTA
+#define  PORT_CONTROL   PORTB
+#define  DDR_CONTROL    DDRB
 
-#define LCD_PORT  2
-#define LCD_PORT_COMMEND  3
 
-#define RS_PIN  1
 #define EN_PIN  0
-#define mode 4
+#define RW_PIN  1
+#define RS_PIN  2
+
+
+
+#define MODE   8
 
 #endif /* LCD_LCD_CONFIG_H_ */

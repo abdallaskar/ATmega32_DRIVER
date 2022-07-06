@@ -16,26 +16,11 @@ static void (*INT0_Fptr)(void) = NULLPTR;
 static void (*INT1_Fptr)(void) = NULLPTR;
 static void (*INT2_Fptr)(void) = NULLPTR;
 
-/************* Call back function ************/
 
-void EXTI_Set_Call_Back(EXTI_Source_Type interrput, void (*LocalPtr)(void)) {
-
-	switch (interrput) {
-	case EXTI_INT0:
-		INT0_Fptr = LocalPtr;
-		break;
-	case EXTI_INT1:
-		INT1_Fptr = LocalPtr;
-		break;
-	case EXTI_INT2:
-		INT2_Fptr = LocalPtr;
-		break;
-
-	}
-
-}
-
-/***** Enable external interrupt ****/
+/* EXTI_Enable : Enable external interrupt INT0 OR INT1 OR INT2
+ * input       : EXTI_Source_Type
+ * return      : void
+ */
 
 void EXTI_Enable(EXTI_Source_Type interrupt) {
 
@@ -54,43 +39,49 @@ void EXTI_Enable(EXTI_Source_Type interrupt) {
 
 }
 
-/***** Disable external interrupt ****/
+
+/* EXTI_Disable : Disable external interrupt INT0 OR INT1 OR INT2
+ * input        : EXTI_Source_Type
+ * return       : void
+ */
 
 void EXTI_Disable(EXTI_Source_Type interrupt) {
 
 	switch (interrupt) {
 	case EXTI_INT0:
-		CLR_BIT(GICR, INT0);
+		CLEAR_BIT(GICR, INT0);
 		break;
 	case EXTI_INT1:
-		CLR_BIT(GICR, INT1);
+		CLEAR_BIT(GICR, INT1);
 		break;
 	case EXTI_INT2:
-		CLR_BIT(GICR, INT2);
+		CLEAR_BIT(GICR, INT2);
 		break;
 
 	}
 
 }
 
-/******* Chose trigger edge for each external interrupt ******/
-
+/* EXTI_Trigger_Edge : Control trigger edge for external interrupt INT0 and INT1 and INT2
+ * input             : EXTI_Source_Type , Trigger_Edge_Type
+ * return            : void
+ */
 void EXTI_Trigger_Edge(EXTI_Source_Type interrupt, Trigger_Edge_Type edge) {
 	switch (interrupt) {
 	case EXTI_INT0: {
 		switch (edge) {
 		case LOW_LEVEL: {
-			CLR_BIT(MCUCR, ISC00);
-			CLR_BIT(MCUCR, ISC01);
+			CLEAR_BIT(MCUCR, ISC00);
+			CLEAR_BIT(MCUCR, ISC01);
 		}
 			break;
 		case ANY_LOGIC_CHANGE: {
 			SET_BIT(MCUCR, ISC00);
-			CLR_BIT(MCUCR, ISC01);
+			CLEAR_BIT(MCUCR, ISC01);
 		}
 			break;
 		case FALLING_EDGE: {
-			CLR_BIT(MCUCR, ISC00);
+			CLEAR_BIT(MCUCR, ISC00);
 			SET_BIT(MCUCR, ISC01);
 		}
 			break;
@@ -105,17 +96,17 @@ void EXTI_Trigger_Edge(EXTI_Source_Type interrupt, Trigger_Edge_Type edge) {
 	case EXTI_INT1: {
 		switch (edge) {
 		case LOW_LEVEL: {
-			CLR_BIT(MCUCR, ISC10);
-			CLR_BIT(MCUCR, ISC11);
+			CLEAR_BIT(MCUCR, ISC10);
+			CLEAR_BIT(MCUCR, ISC11);
 		}
 			break;
 		case ANY_LOGIC_CHANGE: {
 			SET_BIT(MCUCR, ISC10);
-			CLR_BIT(MCUCR, ISC11);
+			CLEAR_BIT(MCUCR, ISC11);
 		}
 			break;
 		case FALLING_EDGE: {
-			CLR_BIT(MCUCR, ISC10);
+			CLEAR_BIT(MCUCR, ISC10);
 			SET_BIT(MCUCR, ISC11);
 		}
 			break;
@@ -131,15 +122,15 @@ void EXTI_Trigger_Edge(EXTI_Source_Type interrupt, Trigger_Edge_Type edge) {
 	case EXTI_INT2: {
 		switch (edge) {
 		case FALLING_EDGE:
-			CLR_BIT(MCUCSR, ISC2);
+			CLEAR_BIT(MCUCSR, ISC2);
 
 			break;
 		case RISING_EDGE:
-			CLR_BIT(MCUCSR, ISC2);
+			CLEAR_BIT(MCUCSR, ISC2);
 
 			break;
 		default:
-			CLR_BIT(MCUCSR, ISC2);
+			CLEAR_BIT(MCUCSR, ISC2);
 			break;
 		}
 	}
@@ -166,3 +157,21 @@ ISR(INT2_vect) {
 	}
 }
 
+/************* Call back function ************/
+
+void EXTI_Set_Call_Back(EXTI_Source_Type interrput, void (*LocalPtr)(void)) {
+
+	switch (interrput) {
+	case EXTI_INT0:
+		INT0_Fptr = LocalPtr;
+		break;
+	case EXTI_INT1:
+		INT1_Fptr = LocalPtr;
+		break;
+	case EXTI_INT2:
+		INT2_Fptr = LocalPtr;
+		break;
+
+	}
+
+}

@@ -11,4 +11,4 @@
 void GIE_EnableGlobleInterrupt(void);
 void GIE_DisableGlobleInterrupt(void);
 
-#endif /* GIE_GIE_INTERFACE_H_ */
+#endif  /*GIE_GIE_INTERFACE_H_*/
